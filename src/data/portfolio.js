@@ -27,16 +27,16 @@ export const softSkills = [
     pct: 90,
   },
   {
-    initial: 'C',
-    badge: 'bg-[#00c4cc]',
+    img: 'assets/canva.jpg',
     name: 'Canva Design',
     pct: 82,
+    rounded: true,
   },
   {
-    initial: 'A',
-    badge: 'bg-[#22c55e]',
+    img: 'assets/am.jpg',
     name: 'Alight Motion',
     pct: 76,
+    rounded: true,
   },
   {
     img: 'https://upload.wikimedia.org/wikipedia/commons/0/0c/Capcut-icon.png',
