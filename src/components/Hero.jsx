@@ -39,7 +39,7 @@ export default function Hero() {
         DESIGNER
       </div>
 
-      <svg className="pointer-events-none absolute bottom-[12%] left-[16%] z-[3] h-[clamp(220px,26vw,340px)] w-[clamp(220px,26vw,340px)] max-lg:bottom-auto max-lg:left-auto max-lg:right-20 max-lg:top-[200px] max-lg:z-[6] max-lg:h-[200px] max-lg:w-[200px] max-lg:opacity-90" viewBox="0 0 200 200" fill="#ff5e00">
+      <svg className="pointer-events-none absolute bottom-[12%] left-[16%] z-[3] h-[clamp(220px,26vw,340px)] w-[clamp(220px,26vw,340px)] max-lg:hidden" viewBox="0 0 200 200" fill="#ff5e00">
         <rect x="80" y="10" width="40" height="180" rx="6" />
         <rect x="80" y="10" width="40" height="180" rx="6" transform="rotate(45 100 100)" />
         <rect x="80" y="10" width="40" height="180" rx="6" transform="rotate(90 100 100)" />
@@ -57,7 +57,7 @@ export default function Hero() {
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         data-delay="150"
-        className="reveal-fade absolute bottom-0 left-1/2 z-[5] flex h-[96%] max-h-[980px] w-[min(880px,98vw)] -translate-x-1/2 cursor-crosshair items-end justify-center max-lg:static max-lg:bottom-auto max-lg:left-auto max-lg:order-2 max-lg:h-[calc(81.6svh_-_240px)] max-lg:max-h-[504px] max-lg:w-[92vw] max-lg:translate-x-0"
+        className="reveal-fade absolute bottom-0 left-1/2 z-[5] flex h-[96%] max-h-[980px] w-[min(880px,98vw)] -translate-x-1/2 cursor-crosshair items-end justify-center max-lg:static max-lg:bottom-auto max-lg:left-auto max-lg:order-2 max-lg:h-[calc(106svh_-_312px)] max-lg:max-h-[655px] max-lg:w-[92vw] max-lg:translate-x-0"
       >
         <img
           src={HERO_PHOTO}

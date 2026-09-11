@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 import { ABOUT_PHOTO } from '../data/portfolio'
 
 const MAX_PUSH_ANGLE = 14
@@ -8,17 +8,6 @@ export default function About() {
   const boxRef = useRef(null)
   const colorRef = useRef(null)
   const glareRef = useRef(null)
-  const [unlocked, setUnlocked] = useState(false)
-
-  // HP: sembunyikan About dulu, munculkan permanen saat mulai scroll
-  useEffect(() => {
-    const onScroll = () => {
-      if (window.scrollY > 30) setUnlocked(true)
-    }
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
 
   const handleMouseMove = (e) => {
     const box = boxRef.current
@@ -58,7 +47,7 @@ export default function About() {
   }
 
   return (
-    <section id="about" className={`reveal-section relative z-20 border-b border-white/5 bg-coal px-6 pb-[110px] pt-40 lg:px-[60px] max-lg:px-5 max-lg:pb-16 max-lg:pt-28 ${unlocked ? '' : 'max-lg:!opacity-0'}`}>
+    <section id="about" className="reveal-section relative z-20 border-b border-white/5 bg-coal px-6 pb-[110px] pt-40 lg:px-[60px] max-lg:px-5 max-lg:pb-16 max-lg:pt-28">
       <div className="grid mx-auto max-w-[1240px] items-center gap-11 lg:grid-cols-[1.15fr_1fr] lg:gap-[70px] max-lg:gap-10">
         <div className="reveal-left max-lg:text-center" data-delay="100">
           <span className="mb-2 inline-block text-[1.15rem] font-extrabold tracking-[2px] text-[#6a6a6a] max-lg:text-[1rem]">
