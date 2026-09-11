@@ -39,7 +39,7 @@ export default function Hero() {
         DESIGNER
       </div>
 
-      <svg className="pointer-events-none absolute bottom-[12%] left-[16%] z-[3] h-[clamp(220px,26vw,340px)] w-[clamp(220px,26vw,340px)] max-lg:bottom-auto max-lg:left-auto max-lg:right-5 max-lg:top-[92px] max-lg:z-[6] max-lg:h-[104px] max-lg:w-[104px] max-lg:opacity-90" viewBox="0 0 200 200" fill="#ff5e00">
+      <svg className="pointer-events-none absolute bottom-[12%] left-[16%] z-[3] h-[clamp(220px,26vw,340px)] w-[clamp(220px,26vw,340px)] max-lg:bottom-auto max-lg:left-auto max-lg:right-20 max-lg:top-[200px] max-lg:z-[6] max-lg:h-[200px] max-lg:w-[200px] max-lg:opacity-90" viewBox="0 0 200 200" fill="#ff5e00">
         <rect x="80" y="10" width="40" height="180" rx="6" />
         <rect x="80" y="10" width="40" height="180" rx="6" transform="rotate(45 100 100)" />
         <rect x="80" y="10" width="40" height="180" rx="6" transform="rotate(90 100 100)" />
