@@ -84,7 +84,7 @@ export default function Hero() {
         aria-label="Scroll Down"
         onClick={scrollToAbout}
         data-delay="400"
-        className="reveal-fade absolute -bottom-[63px] left-1/2 z-50 flex h-[126px] w-[126px] -translate-x-1/2 items-center justify-center rounded-full bg-[#242424] shadow-[0_12px_35px_rgba(0,0,0,0.7)] transition-transform hover:scale-105 max-lg:-bottom-[48px] max-lg:h-[96px] max-lg:w-[96px] max-lg:hidden"
+        className="reveal-fade absolute -bottom-[63px] left-1/2 z-50 flex h-[126px] w-[126px] -translate-x-1/2 items-center justify-center rounded-full bg-[#242424] shadow-[0_12px_35px_rgba(0,0,0,0.7)] transition-transform hover:scale-105 max-lg:bottom-auto max-lg:left-auto max-lg:right-4 max-lg:top-[88px] max-lg:h-20 max-lg:w-20 max-lg:translate-x-0"
       >
         <svg className="animate-spin-slow absolute h-full w-full" viewBox="0 0 100 100">
           <path id="circlePath" d="M 50, 50 m -36, 0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0" fill="none" />
