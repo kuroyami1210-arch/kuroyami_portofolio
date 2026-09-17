@@ -8,12 +8,18 @@ export default function About({ t }) {
   const colorRef = useRef(null)
 
   // Sama seperti foto hero: grayscale + spotlight warna mengikuti pointer.
+  // Foto about di-scale (scale-[150%]), sedangkan mask radial dihitung
+  // di koordinat lokal img (sebelum transform). getBoundingClientRect()
+  // mengembalikan box SESUDAH scale, jadi delta layar harus dibagi
+  // skala agar titik tengah spotlight tepat di posisi mouse.
   const updateSpotlight = (clientX, clientY) => {
     const colorPhoto = colorRef.current
     if (!colorPhoto) return
     const rect = colorPhoto.getBoundingClientRect()
-    colorPhoto.style.setProperty('--x', `${clientX - rect.left}px`)
-    colorPhoto.style.setProperty('--y', `${clientY - rect.top}px`)
+    const rawScale = rect.width / (colorPhoto.offsetWidth || rect.width)
+    const scale = rawScale && Number.isFinite(rawScale) ? rawScale : 1
+    colorPhoto.style.setProperty('--x', `${(clientX - rect.left) / scale}px`)
+    colorPhoto.style.setProperty('--y', `${(clientY - rect.top) / scale}px`)
     colorPhoto.style.setProperty('--radius', `${ABOUT_RADIUS}px`)
   }
 
@@ -36,7 +42,7 @@ export default function About({ t }) {
   }
 
   return (
-    <section id="about" className="reveal-section relative z-20 border-b border-white/5 bg-coal px-6 pb-[110px] pt-40 lg:px-[60px] max-lg:px-5 max-lg:pb-16 max-lg:pt-28">
+    <section id="about" className="reveal-section relative z-[60] overflow-visible border-b border-white/5 bg-coal px-6 pb-[110px] pt-40 lg:px-[60px] max-lg:px-5 max-lg:pb-16 max-lg:pt-28">
       <div className="grid mx-auto max-w-[1240px] items-center gap-11 lg:grid-cols-[1.15fr_1fr] lg:gap-[70px] max-lg:gap-10">
         <div className="reveal-left max-lg:text-center" data-delay="100">
           <span className="mb-2 inline-block text-[1.15rem] font-extrabold tracking-[2px] text-[#6a6a6a] max-lg:text-[1rem]">
@@ -60,23 +66,23 @@ export default function About({ t }) {
         </div>
 
         {/* Foto polos seperti hero: tanpa bingkai browser, tanpa tilt 3D, tanpa glare */}
-        <div className="reveal-right relative flex items-center justify-center py-5 max-lg:hidden" data-delay="220">
+        <div className="reveal-right relative z-[70] flex items-center justify-center overflow-visible py-5 lg:-ml-12 max-lg:hidden" data-delay="220">
           <div
             onPointerMove={handlePointerMove}
             onPointerLeave={handlePointerLeave}
             onTouchMove={handleTouchMove}
-            className="relative flex h-[530px] w-full max-w-[560px] cursor-crosshair items-end justify-center"
+            className="mask-fade-bottom relative z-[70] flex h-[530px] w-full max-w-[560px] cursor-crosshair items-end justify-center overflow-visible"
           >
             <img
               src={ABOUT_PHOTO}
               alt={t.grayAlt}
-              className="pointer-events-none absolute bottom-0 h-full w-auto max-w-full object-contain grayscale contrast-[1.12] brightness-[0.96]"
+              className="pointer-events-none absolute bottom-0 h-full w-auto max-w-full origin-bottom scale-[150%] object-contain grayscale contrast-[1.12] brightness-[0.96]"
             />
             <img
               ref={colorRef}
               src={ABOUT_PHOTO}
               alt={t.colorAlt}
-              className="photo-color pointer-events-none absolute bottom-0 h-full w-auto max-w-full object-contain"
+              className="photo-color pointer-events-none absolute bottom-0 h-full w-auto max-w-full origin-bottom scale-[150%] object-contain"
             />
           </div>
 
@@ -84,7 +90,7 @@ export default function About({ t }) {
             href="#skills"
             aria-label={t.exploreAria}
             onClick={scrollToSkills}
-            className="absolute -bottom-5 -left-5 z-[25] flex h-[110px] w-[110px] items-center justify-center rounded-full bg-[#242424] shadow-[0_10px_30px_rgba(0,0,0,0.6)] transition-transform hover:scale-105"
+            className="absolute -bottom-5 -left-5 z-[75] flex h-[110px] w-[110px] items-center justify-center rounded-full bg-[#242424] shadow-[0_10px_30px_rgba(0,0,0,0.6)] transition-transform hover:scale-105"
           >
             <svg className="animate-spin-slow absolute h-full w-full" viewBox="0 0 100 100">
               <path id="explorePath" d="M 50, 50 m -34, 0 a 34,34 0 1,1 68,0 a 34,34 0 1,1 -68,0" fill="none" />
@@ -107,7 +113,7 @@ export default function About({ t }) {
             </div>
           </a>
 
-          <svg className="pointer-events-none absolute -right-2.5 top-[30%] z-10" width="75" height="40" viewBox="0 0 70 35">
+          <svg className="pointer-events-none absolute right-4 top-[30%] z-[90] overflow-visible" width="75" height="40" viewBox="0 0 70 35">
             <path d="M5 12 Q 22 0, 40 18 T 68 14" fill="none" stroke="#ff8c00" strokeWidth="3" strokeLinecap="round" />
             <path d="M5 25 Q 22 13, 40 31 T 68 27" fill="none" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" />
           </svg>

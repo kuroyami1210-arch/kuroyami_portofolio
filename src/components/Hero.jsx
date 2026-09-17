@@ -76,18 +76,18 @@ export default function Hero({ t }) {
         onTouchMove={handleTouchMove}
         onMouseLeave={handleMouseLeave}
         data-delay="150"
-        className="reveal-fade absolute bottom-0 left-1/2 z-[5] flex h-[96%] max-h-[980px] w-[min(880px,98vw)] -translate-x-1/2 cursor-crosshair items-end justify-center max-lg:static max-lg:bottom-auto max-lg:left-auto max-lg:order-2 max-lg:h-[calc(106svh_-_312px)] max-lg:max-h-[655px] max-lg:w-[92vw] max-lg:translate-x-0"
+        className="reveal-fade absolute bottom-0 left-1/2 z-[5] flex h-[96%] max-h-[980px] w-[min(880px,98vw)] -translate-x-1/2 cursor-crosshair items-end justify-center max-lg:static max-lg:bottom-auto max-lg:left-auto max-lg:order-2 max-lg:h-[calc(122.4svh_-_360px)] max-lg:max-h-[756px] max-lg:w-[92vw] max-lg:translate-x-0"
       >
         <img
           src={HERO_PHOTO}
           alt={t.baseAlt}
-          className="pointer-events-none absolute bottom-0 h-full w-auto max-w-full object-contain object-bottom grayscale contrast-[1.12] brightness-[0.96]"
+          className="pointer-events-none absolute bottom-0 h-full w-auto max-w-full scale-140 object-contain object-bottom grayscale contrast-[1.12] brightness-[0.96]"
         />
         <img
           ref={colorRef}
           src={HERO_PHOTO}
           alt={t.colorAlt}
-          className="photo-color pointer-events-none absolute bottom-0 h-full w-auto max-w-full object-contain object-bottom"
+          className="photo-color pointer-events-none absolute bottom-0 h-full w-auto max-w-full scale-140 object-contain object-bottom"
         />
       </div>
 
@@ -103,7 +103,7 @@ export default function Hero({ t }) {
         aria-label={t.scrollAria}
         onClick={scrollToAbout}
         data-delay="400"
-        className="reveal-fade absolute -bottom-[63px] left-1/2 z-50 flex h-[126px] w-[126px] -translate-x-1/2 items-center justify-center rounded-full bg-[#242424] shadow-[0_12px_35px_rgba(0,0,0,0.7)] transition-transform hover:scale-105 max-lg:-bottom-[48px] max-lg:h-[96px] max-lg:w-[96px] max-lg:hidden"
+        className="reveal-fade absolute -bottom-[63px] left-1/2 z-[70] flex h-[126px] w-[126px] -translate-x-1/2 items-center justify-center rounded-full bg-[#242424] shadow-[0_12px_35px_rgba(0,0,0,0.7)] transition-transform hover:scale-105 max-lg:-bottom-[48px] max-lg:h-[96px] max-lg:w-[96px] max-lg:hidden"
       >
         <svg className="animate-spin-slow absolute h-full w-full" viewBox="0 0 100 100">
           <path id="circlePath" d="M 50, 50 m -36, 0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0" fill="none" />

@@ -63,6 +63,12 @@ body {
   );
 }
 
+/* ---- Hero photo fade ke bawah (mask di wrapper, agar spotlight radial di img tetap jalan) ---- */
+.mask-fade-bottom {
+  -webkit-mask-image: linear-gradient(to bottom, black 68%, transparent 99%);
+  mask-image: linear-gradient(to bottom, black 68%, transparent 99%);
+}
+
 /* ---- Slider edge fade (mask-image) ---- */
 .slider-fade {
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
