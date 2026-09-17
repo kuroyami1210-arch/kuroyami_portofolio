@@ -47,7 +47,7 @@ export default function Hero({ t }) {
   return (
     <section
       id="hero"
-      className="reveal-section relative z-40 flex h-[calc(100vh_-_63px)] min-h-[640px] items-end justify-center overflow-visible border-b border-white/[0.08] max-lg:h-auto max-lg:min-h-0 max-lg:flex-col max-lg:items-center max-lg:justify-center max-lg:pb-0 max-lg:pt-[76px]"
+      className="reveal-section relative z-40 flex h-[calc(100vh_-_63px)] min-h-[640px] items-end justify-center overflow-visible border-b border-white/[0.08] max-lg:h-auto max-lg:min-h-0 max-lg:flex-col max-lg:items-center max-lg:justify-center max-lg:pb-0 max-lg:pt-[20px]"
     >
       {/* Back title */}
       <div data-delay="50" className="reveal-fade pointer-events-none absolute left-1/2 top-[calc(60%_+_70px)] z-[2] w-full -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap text-center font-display text-[clamp(3.2rem,7.8vw,7.8rem)] font-black uppercase leading-[0.95] tracking-tight text-white max-lg:top-[calc(60%_+_90px)] max-lg:text-[clamp(2.24rem,5.46vw,5.46rem)]">
