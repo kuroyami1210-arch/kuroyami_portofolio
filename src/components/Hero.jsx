@@ -1,7 +1,6 @@
 import { HERO_PHOTO } from '../data/portfolio'
 import { useRef } from 'react'
 import { scrollToSection } from '../utils/scroll'
-import { scrollToSection } from '../utils/scroll'
 
 const HERO_RADIUS = 150
 
