@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 const SELECTOR =
   '.reveal-section, .reveal-project, .reveal-child, .reveal-left, .reveal-right, .reveal-zoom, .reveal-fade'
 
-export function useReveal() {
+export function useReveal(dep) {
   useEffect(() => {
     const els = document.querySelectorAll(SELECTOR)
     if (!('IntersectionObserver' in window)) {
@@ -41,5 +41,5 @@ export function useReveal() {
     )
     els.forEach((el) => obs.observe(el))
     return () => obs.disconnect()
-  }, [])
+  }, [dep])
 }

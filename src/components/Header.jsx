@@ -1,17 +1,42 @@
 import { useEffect, useState } from 'react'
-import { NAV_LINKS } from '../data/portfolio'
+import { Link } from 'react-router-dom'
+import { scrollToSection } from '../utils/scroll'
 
-export default function Header({ activeSection }) {
+function LangSwitcher({ lang, mobile = false }) {
+  const base = mobile
+    ? 'flex w-full items-center rounded-xl border border-white/10 bg-white/[0.04] p-1'
+    : 'flex items-center rounded-full border border-white/10 bg-white/[0.04] p-1'
+  const btn = mobile
+    ? 'flex-1 rounded-lg px-4 py-2.5 text-center text-[0.8rem] font-bold tracking-[1px] transition-colors'
+    : 'rounded-full px-3 py-1 text-[0.72rem] font-bold tracking-[1px] transition-colors'
+  return (
+    <div className={base} role="group" aria-label="Language / Bahasa">
+      <Link
+        to="/"
+        aria-current={lang === 'en' ? 'true' : undefined}
+        className={`${btn} ${lang === 'en' ? 'bg-accent text-white' : 'text-muted hover:text-white'}`}
+      >
+        EN
+      </Link>
+      <Link
+        to="/id"
+        aria-current={lang === 'id' ? 'true' : undefined}
+        className={`${btn} ${lang === 'id' ? 'bg-accent text-white' : 'text-muted hover:text-white'}`}
+      >
+        ID
+      </Link>
+    </div>
+  )
+}
+
+export default function Header({ activeSection, navLinks, headerText, lang }) {
   const [open, setOpen] = useState(false)
   const [visible, setVisible] = useState(true)
 
   const handleNavClick = (e, id) => {
     e.preventDefault()
     setOpen(false)
-    const target = document.getElementById(id)
-    if (target) {
-      window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' })
-    }
+    scrollToSection(id)
   }
 
   useEffect(() => {
@@ -57,35 +82,42 @@ export default function Header({ activeSection }) {
         onClick={(e) => handleNavClick(e, 'hero')}
         className="text-[1.35rem] font-bold text-white no-underline"
       >
-        Fikri
+        {headerText.brand}
       </a>
 
-      <nav className="hidden lg:block">
-        <ul className="flex list-none gap-9">
-          {NAV_LINKS.map((link) => (
-            <li key={link.id}>
-              <a
-                href={`#${link.id}`}
-                onClick={(e) => handleNavClick(e, link.id)}
-                className={`relative inline-block text-[0.82rem] font-semibold uppercase tracking-[0.8px] transition-colors after:absolute after:-bottom-[5px] after:left-0 after:h-[2px] after:bg-accent after:transition-all ${
-                  activeSection === link.id
-                    ? 'text-white after:w-full'
-                    : 'text-muted after:w-0 hover:text-white'
-                }`}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      <div className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden lg:block">
+          <ul className="flex list-none gap-9">
+            {navLinks.map((link) => (
+              <li key={link.id}>
+                <a
+                  href={`#${link.id}`}
+                  onClick={(e) => handleNavClick(e, link.id)}
+                  className={`relative inline-block text-[0.82rem] font-semibold uppercase tracking-[0.8px] transition-colors after:absolute after:-bottom-[5px] after:left-0 after:h-[2px] after:bg-accent after:transition-all ${
+                    activeSection === link.id
+                      ? 'text-white after:w-full'
+                      : 'text-muted after:w-0 hover:text-white'
+                  }`}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <LangSwitcher lang={lang} />
+      </div>
 
-      {/* Tombol garis 3 — hanya tampil di HP/tablet, laptop tidak terpengaruh */}
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
-        aria-label={open ? 'Tutup menu navigasi' : 'Buka menu navigasi'}
+      <div className="flex items-center gap-3 lg:hidden">
+        <div className="hidden sm:block">
+          <LangSwitcher lang={lang} />
+        </div>
+        {/* Tombol garis 3 — hanya tampil di HP/tablet, laptop tidak terpengaruh */}
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          aria-label={open ? headerText.closeMenu : headerText.openMenu}
         className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] transition-colors hover:bg-white/10 active:scale-95 lg:hidden"
       >
         <span className="relative block h-[18px] w-6">
@@ -105,7 +137,8 @@ export default function Header({ activeSection }) {
             }`}
           />
         </span>
-      </button>
+        </button>
+      </div>
 
       {/* Overlay — hanya di HP/tablet */}
       <div
@@ -115,14 +148,13 @@ export default function Header({ activeSection }) {
         }`}
       />
 
-      {/* Menu dropdown HP — tersembunyi sampai ikon garis 3 diklik, laptop tidak terpengaruh */}
       <nav
         className={`absolute inset-x-0 top-full border-white/[0.06] bg-ink transition-all duration-300 ease-out lg:hidden ${
           open ? 'border-t opacity-100' : 'pointer-events-none -translate-y-2 opacity-0'
         }`}
       >
         <ul className="flex flex-col gap-1 px-5 py-4">
-          {NAV_LINKS.map((link) => (
+          {navLinks.map((link) => (
             <li key={link.id}>
               <a
                 href={`#${link.id}`}
@@ -137,6 +169,9 @@ export default function Header({ activeSection }) {
               </a>
             </li>
           ))}
+          <li className="px-1 pb-1 pt-2 sm:hidden">
+            <LangSwitcher lang={lang} mobile />
+          </li>
         </ul>
       </nav>
 

@@ -1,6 +1,6 @@
 import { Children, useCallback, useEffect, useRef, useState } from 'react'
 
-export default function ProjectSlider({ id, interval = 3000, children }) {
+export default function ProjectSlider({ id, interval = 3000, children, prevAria = 'Previous', nextAria = 'Next' }) {
   const slides = Children.toArray(children)
   const total = slides.length
   const [activeIndex, setActiveIndex] = useState(0)
@@ -65,7 +65,7 @@ export default function ProjectSlider({ id, interval = 3000, children }) {
 
       <button
         type="button"
-        aria-label="Previous"
+        aria-label={prevAria}
         onClick={go(-1)}
         className="absolute left-3 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/[0.16] bg-[#16161a]/85 text-xl leading-none text-white backdrop-blur transition-all hover:scale-110 hover:border-accent hover:bg-accent"
       >
@@ -73,7 +73,7 @@ export default function ProjectSlider({ id, interval = 3000, children }) {
       </button>
       <button
         type="button"
-        aria-label="Next"
+        aria-label={nextAria}
         onClick={go(1)}
         className="absolute right-3 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/[0.16] bg-[#16161a]/85 text-xl leading-none text-white backdrop-blur transition-all hover:scale-110 hover:border-accent hover:bg-accent"
       >

@@ -24,7 +24,8 @@ function SlideLabel({ children }) {
   )
 }
 
-function DeviceShowcase() {
+// Seluruh gambar + teks dibaca dari portfolio.js (t.duta) — tambah/ganti dari sana.
+function DeviceShowcase({ t }) {
   const stageRef = useRef(null)
   const pcRef = useRef(null)
   const phoneRef = useRef(null)
@@ -66,13 +67,13 @@ function DeviceShowcase() {
               <span className="mr-[2px] inline-block h-[5px] w-[5px] rounded-full bg-[#666]" />
             </div>
             <div className="flex-1 rounded-lg bg-[#161616] px-2 py-[2px] text-[0.58rem] text-[#888]">
-              duta.sekolah.sch.id
+              {t.url}
             </div>
           </div>
           <div className="relative flex-1 overflow-hidden">
               <img
-              src="assets/duta/panel-duta.png"
-              alt="School Ambassador Applicant Dashboard"
+              src={t.panel.src}
+              alt={t.panel.alt}
               className="h-full w-full object-cover object-top brightness-[0.85]"
             />
           </div>
@@ -85,8 +86,8 @@ function DeviceShowcase() {
           <div className="mx-auto mb-1 mt-1.5 h-[3px] w-[26px] rounded bg-[#333]" />
           <div className="relative flex-1 overflow-hidden">
               <img
-              src="assets/duta/registrasi.png"
-              alt="School Ambassador Registration Form"
+              src={t.form.src}
+              alt={t.form.alt}
               className="h-full w-full object-cover object-top brightness-[0.9]"
             />
           </div>
@@ -109,46 +110,58 @@ function ProjectCard({ reverse = false, delay = 0, children }) {
   )
 }
 
-export default function Projects() {
+function PhotoRow({ photos }) {
+  return (
+    <div className="flex h-full w-full items-center justify-center gap-4 px-6 py-[18px] max-lg:gap-2 max-lg:px-3">
+      {photos.map((f) => (
+        <div key={f.alt} className="h-[200px] w-[102px] shrink-0 overflow-hidden rounded-xl border-[1.5px] border-white/[0.12] bg-[#17171a] shadow-[0_10px_25px_rgba(0,0,0,0.65)] max-lg:h-[145px] max-lg:w-[74px] max-sm:h-[118px] max-sm:w-[60px]">
+          <img src={f.src} alt={f.alt} className="block h-full w-full object-cover" />
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// Seluruh judul, deskripsi, badge, label, dan path gambar dibaca dari
+// portfolio.js (CONTENT.en/id.projects) — ubah/tambah proyek dari sana.
+export default function Projects({ t }) {
   return (
     <section id="projects" className="reveal-section relative z-30 border-b border-white/5 bg-ink px-6 py-[100px]">
       <div className="reveal-child mb-[50px] text-center" data-delay="50">
         <h3 className="font-display text-[clamp(2.2rem,4vw,3rem)] font-extrabold tracking-tight text-white">
-          Featured Project
+          {t.title}
         </h3>
       </div>
 
       <div className="mx-auto flex max-w-[960px] flex-col gap-9">
         {/* SMEZINE */}
         <ProjectCard delay={60}>
-          <ProjectSlider id="carouselSmezine" interval={3000}>
+          <ProjectSlider id="carouselSmezine" interval={3000} prevAria={t.prevAria} nextAria={t.nextAria}>
             <>
               <img
-                src="assets/smezine/Screenshot (198).png"
-                alt="Smezine Gallery Page"
+                src={t.smezine.slides[0].src}
+                alt={t.smezine.slides[0].alt}
                 className="h-full w-full object-cover object-top transition-transform duration-300 hover:scale-[1.03] max-lg:object-contain max-lg:object-center"
               />
-              <SlideLabel>SMEZINE GALLERY PAGE</SlideLabel>
+              <SlideLabel>{t.smezine.label1}</SlideLabel>
             </>
             <>
               <img
-                src="assets/smezine/Screenshot (199).png"
-                alt="Smezine Division and Management Page"
+                src={t.smezine.slides[1].src}
+                alt={t.smezine.slides[1].alt}
                 className="h-full w-full object-cover object-top transition-transform duration-300 hover:scale-[1.03] max-lg:object-contain max-lg:object-center"
               />
-              <SlideLabel>DIVISION & MANAGEMENT PAGE</SlideLabel>
+              <SlideLabel>{t.smezine.label2}</SlideLabel>
             </>
           </ProjectSlider>
 
           <div className="flex flex-col items-start gap-3">
-            <Badge kind="UI/UX Design" color="badge-orange" />
+            <Badge kind={t.smezine.badge} color={t.smezine.badgeColor} />
             <h4 className="font-display text-[clamp(1.4rem,2.2vw,1.85rem)] font-extrabold leading-tight text-white">
-              Smezine Extracurricular Web
+              {t.smezine.title}
             </h4>
             <p className="text-[0.88rem] leading-[1.65] text-[#929292]">
-              An interactive school wall-magazine and digital magazine portal with
-              modern curated article rubrics, an adaptive e-magazine reading
-              system, and student journalism editorial publication management.
+              {t.smezine.desc}
             </p>
           </div>
         </ProjectCard>
@@ -156,79 +169,55 @@ export default function Projects() {
         {/* RFID */}
         <ProjectCard reverse delay={120}>
           <div className="flex flex-col items-start gap-3 max-lg:order-2">
-            <Badge kind="Web & IoT" color="badge-red" />
+            <Badge kind={t.rfid.badge} color={t.rfid.badgeColor} />
             <h4 className="font-display text-[clamp(1.4rem,2.2vw,1.85rem)] font-extrabold leading-tight text-white">
-              RFID-Based Attendance System
+              {t.rfid.title}
             </h4>
             <p className="text-[0.88rem] leading-[1.65] text-[#929292]">
-              IoT integration of the RFID RC522 device with a real-time Web
-              Dashboard for student attendance audit logs, fast smart-card
-              verification, and accurate data recapitulation.
+              {t.rfid.desc}
             </p>
           </div>
 
-          <ProjectSlider id="carouselRfid" interval={3000}>
+          <ProjectSlider id="carouselRfid" interval={3000} prevAria={t.prevAria} nextAria={t.nextAria}>
             <>
-              <div className="flex h-full w-full items-center justify-center gap-4 px-6 py-[18px] max-lg:gap-2 max-lg:px-3">
-                {[
-                  { src: 'assets/arduino/depan.jpg', alt: 'RFID Attendance Device Front View' },
-                  { src: 'assets/arduino/dalam.png', alt: 'RFID RC522 Sensor Circuit' },
-                  { src: 'assets/arduino/belakang.jpg', alt: 'RFID Attendance Device Rear View' },
-                ].map((f) => (
-                  <div key={f.alt} className="h-[200px] w-[102px] shrink-0 overflow-hidden rounded-xl border-[1.5px] border-white/[0.12] bg-[#17171a] shadow-[0_10px_25px_rgba(0,0,0,0.65)] max-lg:h-[145px] max-lg:w-[74px] max-sm:h-[118px] max-sm:w-[60px]">
-                    <img src={f.src} alt={f.alt} className="block h-full w-full object-cover" />
-                  </div>
-                ))}
-              </div>
-              <SlideLabel>RFID DEVICE DOCUMENTATION</SlideLabel>
+              <PhotoRow photos={t.rfid.devices} />
+              <SlideLabel>{t.rfid.label1}</SlideLabel>
             </>
             <>
               <img
-                src="assets/arduino/panel.png"
-                alt="Digital Attendance Panel Dashboard"
+                src={t.rfid.panel.src}
+                alt={t.rfid.panel.alt}
                 className="h-full w-full object-cover object-top max-lg:object-contain max-lg:object-center"
               />
-              <SlideLabel>ATTENDANCE PANEL DASHBOARD</SlideLabel>
+              <SlideLabel>{t.rfid.label2}</SlideLabel>
             </>
           </ProjectSlider>
         </ProjectCard>
 
         {/* PILKETOS */}
         <ProjectCard delay={120}>
-          <ProjectSlider id="carouselPilketos" interval={3000}>
+          <ProjectSlider id="carouselPilketos" interval={3000} prevAria={t.prevAria} nextAria={t.nextAria}>
             <>
-              <div className="flex h-full w-full items-center justify-center gap-4 px-6 py-[18px] max-lg:gap-2 max-lg:px-3">
-                {[
-                  { src: 'assets/pilketos/2.jpeg', alt: 'Pilketos Home Page' },
-                  { src: 'assets/pilketos/1.jpeg', alt: 'Pilketos Student Authentication' },
-                  { src: 'assets/pilketos/3.jpeg', alt: 'Pilketos Teacher & Staff Authentication' },
-                ].map((f) => (
-                  <div key={f.alt} className="h-[200px] w-[102px] shrink-0 overflow-hidden rounded-xl border-[1.5px] border-white/[0.12] bg-[#17171a] shadow-[0_10px_25px_rgba(0,0,0,0.65)] max-lg:h-[145px] max-lg:w-[74px] max-sm:h-[118px] max-sm:w-[60px]">
-                    <img src={f.src} alt={f.alt} className="block h-full w-full object-cover" />
-                  </div>
-                ))}
-              </div>
-              <SlideLabel>MOBILE APP</SlideLabel>
+              <PhotoRow photos={t.pilketos.mobiles} />
+              <SlideLabel>{t.pilketos.label1}</SlideLabel>
             </>
             <>
               <img
-                src="assets/pilketos/dokumentasi.jpeg"
-                alt="Pilketos E-Voting Event Documentation"
+                src={t.pilketos.doc.src}
+                alt={t.pilketos.doc.alt}
                 className="h-full w-full object-cover max-lg:object-contain max-lg:object-center"
               />
-              <SlideLabel>PILKETOS EVENT DOCUMENTATION</SlideLabel>
+              <SlideLabel>{t.pilketos.label2}</SlideLabel>
             </>
           </ProjectSlider>
 
           <div className="flex flex-col items-start gap-3">
-            <Badge kind="UI/UX Design" color="badge-blue" />
+            <Badge kind={t.pilketos.badge} color={t.pilketos.badgeColor} />
             <h4 className="font-display text-[clamp(1.4rem,2.2vw,1.85rem)] font-extrabold leading-tight text-white">
-              Pilketos App (E-Voting)
+              {t.pilketos.title}
             </h4>
             <p className="text-[0.88rem] leading-[1.65] text-[#929292]">
-              A digital e-voting system using single-use unique tokens, live
-              quick-count calculation on the hall screen, and fraud-free
-              encrypted vote auditing.
+              {t.pilketos.desc}
             </p>
           </div>
         </ProjectCard>
@@ -236,19 +225,17 @@ export default function Projects() {
         {/* DUTA */}
         <ProjectCard reverse delay={120}>
           <div className="flex flex-col items-start gap-3 max-lg:order-2">
-            <Badge kind="UI/UX Design" color="badge-purple" />
+            <Badge kind={t.duta.badge} color={t.duta.badgeColor} />
             <h4 className="font-display text-[clamp(1.4rem,2.2vw,1.85rem)] font-extrabold leading-tight text-white">
-              School Ambassador Registration Web
+              {t.duta.title}
             </h4>
             <p className="text-[0.88rem] leading-[1.65] text-[#929292]">
-              A School Ambassador selection and audition platform with an
-              integrated digital form, participant portfolio upload system, and a
-              responsive interface across desktop & mobile devices.
+              {t.duta.desc}
             </p>
           </div>
 
           <div className="h-[280px] w-full">
-            <DeviceShowcase />
+            <DeviceShowcase t={t.duta} />
           </div>
         </ProjectCard>
       </div>

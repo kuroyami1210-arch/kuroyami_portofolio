@@ -32,7 +32,7 @@ function SkillCard({ icon, name, pct, soft = false }) {
   )
 }
 
-export default function Skills() {
+export default function Skills({ t }) {
   const devLoop = [...devSkills, ...devSkills]
   const softLoop = Array(6).fill(softSkills).flat()
 
@@ -40,10 +40,10 @@ export default function Skills() {
     <section id="skills" className="reveal-section relative z-[25] border-y border-white/5 bg-ink py-[100px]">
       <div className="reveal-child mb-[38px] px-5 text-center" data-delay="50">
         <span className="mb-2 block text-[0.8rem] font-bold tracking-[2px] text-accent">
-          DEVELOPMENT & DESIGN
+          {t.eyebrow}
         </span>
         <h3 className="font-display text-[clamp(1.9rem,4.2vw,2.9rem)] font-black tracking-tight max-lg:text-[clamp(1.5rem,7vw,2rem)]">
-          CORE SKILLS & PROFICIENCY
+          {t.title}
         </h3>
       </div>
 

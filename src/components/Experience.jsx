@@ -1,6 +1,5 @@
-import { experiences } from '../data/portfolio'
-
-export default function Experience() {
+export default function Experience({ t }) {
+  const experiences = t.items
   return (
     <section id="experience" className="reveal-section relative z-[28] border-b border-white/5 bg-[#121214] px-6 py-[100px]">
       {/* Single orange accent on the top edge */}
@@ -8,10 +7,10 @@ export default function Experience() {
 
       <div className="reveal-child mb-12 text-center" data-delay="50">
         <span className="text-[0.8rem] font-bold tracking-[2px] text-accent">
-          TRACK RECORD & JOURNEY
+          {t.eyebrow}
         </span>
         <h3 className="mt-2 font-display text-[clamp(2.2rem,4vw,3rem)] font-extrabold tracking-tight text-white max-lg:text-[clamp(1.4rem,6.5vw,1.9rem)]">
-          EXPERIENCE <span className="text-accent">&</span> ACHIEVEMENTS
+          {t.titleA} <span className="text-accent">{t.amp}</span> {t.titleB}
         </h3>
         <div className="mx-auto mt-4 h-[3px] w-16 rounded-full bg-accent" />
       </div>

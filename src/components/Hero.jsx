@@ -1,9 +1,16 @@
-import { useRef } from 'react'
 import { HERO_PHOTO } from '../data/portfolio'
+import { useRef } from 'react'
+import { scrollToSection } from '../utils/scroll'
+import { scrollToSection } from '../utils/scroll'
 
 const HERO_RADIUS = 150
 
-export default function Hero() {
+// Headline hero paling atas — SENGAJA DIKUNCI di sini, tidak diambil
+// dari portfolio.js, agar tampilannya dipertahankan di "/" maupun "/id".
+const HERO_TITLE_LINE1 = "I'M A UI/UX"
+const HERO_TITLE_LINE2 = 'DESIGNER'
+
+export default function Hero({ t }) {
   const wrapperRef = useRef(null)
   const colorRef = useRef(null)
 
@@ -35,8 +42,7 @@ export default function Hero() {
 
   const scrollToAbout = (e) => {
     e.preventDefault()
-    const target = document.getElementById('about')
-    if (target) window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' })
+    scrollToSection('about')
   }
 
   return (
@@ -46,9 +52,9 @@ export default function Hero() {
     >
       {/* Back title */}
       <div data-delay="50" className="reveal-fade pointer-events-none absolute left-1/2 top-[calc(60%_+_70px)] z-[2] w-full -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap text-center font-display text-[clamp(3.2rem,7.8vw,7.8rem)] font-black uppercase leading-[0.95] tracking-tight text-white max-lg:top-[calc(60%_+_90px)] max-lg:text-[clamp(2.24rem,5.46vw,5.46rem)]">
-        I&apos;M A UI/UX
+        {HERO_TITLE_LINE1}
         <br />
-        DESIGNER
+        {HERO_TITLE_LINE2}
       </div>
 
       <svg className="pointer-events-none absolute bottom-[12%] left-[16%] z-[3] h-[clamp(220px,26vw,340px)] w-[clamp(220px,26vw,340px)] max-lg:hidden" viewBox="0 0 200 200" fill="#ff5e00">
@@ -75,27 +81,27 @@ export default function Hero() {
       >
         <img
           src={HERO_PHOTO}
-          alt="Fikri Base"
+          alt={t.baseAlt}
           className="pointer-events-none absolute bottom-0 h-full w-auto max-w-full object-contain object-bottom grayscale contrast-[1.12] brightness-[0.96]"
         />
         <img
           ref={colorRef}
           src={HERO_PHOTO}
-          alt="Fikri Color"
+          alt={t.colorAlt}
           className="photo-color pointer-events-none absolute bottom-0 h-full w-auto max-w-full object-contain object-bottom"
         />
       </div>
 
       {/* Front outline title */}
       <div data-delay="250" className="reveal-fade text-outline pointer-events-none absolute left-1/2 top-[calc(60%_+_70px)] z-[6] w-full -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap text-center font-display text-[clamp(3.2rem,7.8vw,7.8rem)] font-black uppercase leading-[0.95] tracking-tight max-lg:top-[calc(60%_+_90px)] max-lg:text-[clamp(2.24rem,5.46vw,5.46rem)]">
-        I&apos;M A UI/UX
+        {HERO_TITLE_LINE1}
         <br />
-        DESIGNER
+        {HERO_TITLE_LINE2}
       </div>
 
       <a
         href="#about"
-        aria-label="Scroll Down"
+        aria-label={t.scrollAria}
         onClick={scrollToAbout}
         data-delay="400"
         className="reveal-fade absolute -bottom-[63px] left-1/2 z-50 flex h-[126px] w-[126px] -translate-x-1/2 items-center justify-center rounded-full bg-[#242424] shadow-[0_12px_35px_rgba(0,0,0,0.7)] transition-transform hover:scale-105 max-lg:-bottom-[48px] max-lg:h-[96px] max-lg:w-[96px] max-lg:hidden"
@@ -104,7 +110,7 @@ export default function Hero() {
           <path id="circlePath" d="M 50, 50 m -36, 0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0" fill="none" />
           <text className="fill-[#b5b5b5] text-[7.8px] font-semibold uppercase tracking-[2px]">
             <textPath href="#circlePath" startOffset="0%">
-              • SCROLL DOWN • SCROLL DOWN
+              {t.scrollText}
             </textPath>
           </text>
         </svg>

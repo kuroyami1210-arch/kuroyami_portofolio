@@ -1,49 +1,38 @@
 import { useRef } from 'react'
 import { ABOUT_PHOTO } from '../data/portfolio'
+import { scrollToSection } from '../utils/scroll'
 
-const MAX_PUSH_ANGLE = 14
 const ABOUT_RADIUS = 145
 
-export default function About() {
-  const boxRef = useRef(null)
+export default function About({ t }) {
   const colorRef = useRef(null)
-  const glareRef = useRef(null)
 
-  const handleMouseMove = (e) => {
-    const box = boxRef.current
+  // Sama seperti foto hero: grayscale + spotlight warna mengikuti pointer.
+  const updateSpotlight = (clientX, clientY) => {
     const colorPhoto = colorRef.current
-    if (!box || !colorPhoto) return
-    const rect = box.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-    const rotateX = (-(y - rect.height / 2) / (rect.height / 2)) * MAX_PUSH_ANGLE
-    const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * MAX_PUSH_ANGLE
-
-    box.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateZ(-8px)`
-    colorPhoto.style.setProperty('--x', `${x}px`)
-    colorPhoto.style.setProperty('--y', `${y}px`)
+    if (!colorPhoto) return
+    const rect = colorPhoto.getBoundingClientRect()
+    colorPhoto.style.setProperty('--x', `${clientX - rect.left}px`)
+    colorPhoto.style.setProperty('--y', `${clientY - rect.top}px`)
     colorPhoto.style.setProperty('--radius', `${ABOUT_RADIUS}px`)
-
-    if (glareRef.current) {
-      glareRef.current.style.setProperty('--gx', `${(x / rect.width) * 100}%`)
-      glareRef.current.style.setProperty('--gy', `${(y / rect.height) * 100}%`)
-      glareRef.current.style.opacity = '1'
-    }
   }
 
-  const handleMouseLeave = () => {
-    if (boxRef.current) {
-      boxRef.current.style.transform =
-        'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)'
-    }
+  const handlePointerMove = (e) => {
+    updateSpotlight(e.clientX, e.clientY)
+  }
+
+  const handleTouchMove = (e) => {
+    const touch = e.touches?.[0]
+    if (touch) updateSpotlight(touch.clientX, touch.clientY)
+  }
+
+  const handlePointerLeave = () => {
     colorRef.current?.style.setProperty('--radius', '0px')
-    if (glareRef.current) glareRef.current.style.opacity = '0'
   }
 
   const scrollToSkills = (e) => {
     e.preventDefault()
-    const target = document.getElementById('skills')
-    if (target) window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' })
+    scrollToSection('skills')
   }
 
   return (
@@ -51,70 +40,49 @@ export default function About() {
       <div className="grid mx-auto max-w-[1240px] items-center gap-11 lg:grid-cols-[1.15fr_1fr] lg:gap-[70px] max-lg:gap-10">
         <div className="reveal-left max-lg:text-center" data-delay="100">
           <span className="mb-2 inline-block text-[1.15rem] font-extrabold tracking-[2px] text-[#6a6a6a] max-lg:text-[1rem]">
-            HELLO
+            {t.eyebrow}
           </span>
           <h2 className="mb-6 font-display text-[clamp(2.8rem,5vw,4.4rem)] font-black leading-[1.05] tracking-tight max-lg:mb-5 max-lg:text-[clamp(2rem,9vw,3rem)]">
-            I&apos;M FIKRI
+            {t.title}
           </h2>
           <p className="mb-9 max-w-[520px] text-[1.02rem] leading-[1.85] text-[#a0a0a0] max-lg:mx-auto max-lg:mb-8 max-lg:text-[0.95rem] max-lg:leading-[1.8]">
-          A Software Engineering student at SMKN 1 Dukuhturi, Tegal. I have a deep passion for software development, UI/UX design, web technologies, and IoT. With hands-on experience in creative projects and technology leadership, I am committed to continuous learning and contributing to the digital world.
+          {t.desc}
           </p>
           <div className="flex flex-wrap items-center gap-5 max-lg:justify-center">
             <a
               href="#projects"
               className="rounded bg-accent px-7 py-3 text-[0.85rem] font-bold tracking-[0.8px] text-white transition-colors hover:bg-[#e05300] max-lg:w-full max-lg:py-3.5 max-lg:text-center"
             >
-              EXPLORE MY WORKS
+              {t.cta}
             </a>
     
           </div>
         </div>
 
+        {/* Foto polos seperti hero: tanpa bingkai browser, tanpa tilt 3D, tanpa glare */}
         <div className="reveal-right relative flex items-center justify-center py-5 max-lg:hidden" data-delay="220">
           <div
-            ref={boxRef}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            className="relative w-full max-w-[560px] cursor-crosshair overflow-hidden rounded-[20px] border border-white/[0.09] bg-gradient-to-[150deg] from-[#222222] to-[#151515] shadow-[0_24px_50px_rgba(0,0,0,0.6)] transition-shadow"
+            onPointerMove={handlePointerMove}
+            onPointerLeave={handlePointerLeave}
+            onTouchMove={handleTouchMove}
+            className="relative flex h-[530px] w-full max-w-[560px] cursor-crosshair items-end justify-center"
           >
-            <div className="flex items-center justify-between border-b border-white/[0.06] bg-[#1c1c1c]/80 px-[22px] py-4 backdrop-blur">
-              <div className="flex gap-[7px]">
-                <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f56]" />
-                <span className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]" />
-                <span className="h-2.5 w-2.5 rounded-full bg-[#27c93f]" />
-              </div>
-              <div className="flex items-center gap-2 rounded-full border border-accent/20 bg-accent/[0.08] px-3 py-1 text-[0.7rem] font-bold tracking-[1px] text-accentLight">
-                <span className="h-[7px] w-[7px] rounded-full bg-accent shadow-[0_0_8px_#ff5e00]" />
-                PORTFOLIO SHOWCASE
-              </div>
-            </div>
-
-            <div className="relative flex h-[530px] w-full items-end justify-center bg-[radial-gradient(circle_at_center,rgba(255,94,0,0.05)_0%,transparent_70%)]">
-              <img
-                src={ABOUT_PHOTO}
-                alt="Fikri Grayscale"
-                className="pointer-events-none absolute bottom-0 h-full w-auto max-w-full object-contain grayscale contrast-[1.12] brightness-[0.96]"
-              />
-              <img
-                ref={colorRef}
-                src={ABOUT_PHOTO}
-                alt="Fikri Color"
-                className="photo-color pointer-events-none absolute bottom-0 h-full w-auto max-w-full object-contain"
-              />
-              <div
-                ref={glareRef}
-                className="pointer-events-none absolute inset-0 opacity-0 transition-opacity"
-                style={{
-                  background:
-                    'radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255,255,255,0.08) 0%, transparent 60%)',
-                }}
-              />
-            </div>
+            <img
+              src={ABOUT_PHOTO}
+              alt={t.grayAlt}
+              className="pointer-events-none absolute bottom-0 h-full w-auto max-w-full object-contain grayscale contrast-[1.12] brightness-[0.96]"
+            />
+            <img
+              ref={colorRef}
+              src={ABOUT_PHOTO}
+              alt={t.colorAlt}
+              className="photo-color pointer-events-none absolute bottom-0 h-full w-auto max-w-full object-contain"
+            />
           </div>
 
           <a
             href="#skills"
-            aria-label="Explore More - Go to Skills"
+            aria-label={t.exploreAria}
             onClick={scrollToSkills}
             className="absolute -bottom-5 -left-5 z-[25] flex h-[110px] w-[110px] items-center justify-center rounded-full bg-[#242424] shadow-[0_10px_30px_rgba(0,0,0,0.6)] transition-transform hover:scale-105"
           >
@@ -122,7 +90,7 @@ export default function About() {
               <path id="explorePath" d="M 50, 50 m -34, 0 a 34,34 0 1,1 68,0 a 34,34 0 1,1 -68,0" fill="none" />
               <text className="fill-[#e0e0e0] text-[8px] font-bold tracking-[2px]">
                 <textPath href="#explorePath" startOffset="0%">
-                  • EXPLORE MORE • EXPLORE MORE
+                  {t.exploreText}
                 </textPath>
               </text>
             </svg>
