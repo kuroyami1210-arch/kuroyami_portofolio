@@ -3,6 +3,7 @@ import { NAV_LINKS } from '../data/portfolio'
 
 export default function Header({ activeSection }) {
   const [open, setOpen] = useState(false)
+  const [visible, setVisible] = useState(true)
 
   const handleNavClick = (e, id) => {
     e.preventDefault()
@@ -19,8 +20,38 @@ export default function Header({ activeSection }) {
     return () => window.removeEventListener('keydown', onKey)
   }, [])
 
+  useEffect(() => {
+    let lastY = window.scrollY
+    let ticking = false
+
+    const onScroll = () => {
+      if (ticking) return
+      ticking = true
+      window.requestAnimationFrame(() => {
+        const y = window.scrollY
+        if (y <= 80) {
+          setVisible(true)
+        } else if (y > lastY + 4) {
+          // scroll ke bawah -> sembunyikan
+          setVisible(false)
+        } else if (y < lastY - 4) {
+          // scroll ke atas -> tampilkan lagi
+          setVisible(true)
+        }
+        lastY = y
+        ticking = false
+      })
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  // Menu mobile dibuka -> navbar tetap tampil
+  const show = visible || open
+
   return (
-    <header className="fixed inset-x-0 top-0 z-[100] flex items-center justify-between border-b border-white/[0.06] bg-ink/85 px-6 py-[18px] backdrop-blur-md transition-all lg:px-[60px] lg:py-5">
+    <header className={`fixed inset-x-0 top-0 z-[100] flex items-center justify-between border-b border-white/[0.06] bg-ink/85 px-6 py-[18px] backdrop-blur-md transition-all duration-300 lg:px-[60px] lg:py-5 ${show ? 'translate-y-0' : '-translate-y-full'}`}>
       <a
         href="#"
         onClick={(e) => handleNavClick(e, 'hero')}
