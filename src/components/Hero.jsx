@@ -7,14 +7,26 @@ export default function Hero() {
   const wrapperRef = useRef(null)
   const colorRef = useRef(null)
 
-  const handleMouseMove = (e) => {
-    const wrapper = wrapperRef.current
+  const updateSpotlight = (clientX, clientY) => {
     const colorPhoto = colorRef.current
-    if (!wrapper || !colorPhoto) return
-    const rect = wrapper.getBoundingClientRect()
-    colorPhoto.style.setProperty('--x', `${e.clientX - rect.left}px`)
-    colorPhoto.style.setProperty('--y', `${e.clientY - rect.top}px`)
+    if (!colorPhoto) return
+    // Koordinat dihitung dari img berwarna itu sendiri (bukan wrapper),
+    // karena mask radial diterapkan pada img tersebut.
+    // Kalau pakai rect wrapper, titik tengah spotlight bergeser
+    // saat lebar wrapper != lebar foto (foto w-auto, centered).
+    const rect = colorPhoto.getBoundingClientRect()
+    colorPhoto.style.setProperty('--x', `${clientX - rect.left}px`)
+    colorPhoto.style.setProperty('--y', `${clientY - rect.top}px`)
     colorPhoto.style.setProperty('--radius', `${HERO_RADIUS}px`)
+  }
+
+  const handlePointerMove = (e) => {
+    updateSpotlight(e.clientX, e.clientY)
+  }
+
+  const handleTouchMove = (e) => {
+    const touch = e.touches?.[0]
+    if (touch) updateSpotlight(touch.clientX, touch.clientY)
   }
 
   const handleMouseLeave = () => {
@@ -54,7 +66,9 @@ export default function Hero() {
       {/* Spotlight photo */}
       <div
         ref={wrapperRef}
-        onMouseMove={handleMouseMove}
+        onPointerMove={handlePointerMove}
+        onPointerLeave={handleMouseLeave}
+        onTouchMove={handleTouchMove}
         onMouseLeave={handleMouseLeave}
         data-delay="150"
         className="reveal-fade absolute bottom-0 left-1/2 z-[5] flex h-[96%] max-h-[980px] w-[min(880px,98vw)] -translate-x-1/2 cursor-crosshair items-end justify-center max-lg:static max-lg:bottom-auto max-lg:left-auto max-lg:order-2 max-lg:h-[calc(106svh_-_312px)] max-lg:max-h-[655px] max-lg:w-[92vw] max-lg:translate-x-0"
