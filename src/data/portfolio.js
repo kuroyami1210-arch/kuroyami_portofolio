@@ -35,42 +35,22 @@ export const SKILLS = {
 }
 
 export const devSkills = [
-  { iconClass: 'devicon-figma-plain colored', name: 'Figma', pct: 80 },
-  { iconClass: 'devicon-html5-plain colored', name: 'HTML5', pct: 82 },
-  { iconClass: 'devicon-css3-plain colored', name: 'CSS3', pct: 78 },
+  { iconClass: 'devicon-html5-plain colored', name: 'HTML', pct: 82 },
+  { iconClass: 'devicon-css3-plain colored', name: 'CSS', pct: 78 },
   { iconClass: 'devicon-javascript-plain colored', name: 'JavaScript', pct: 56 },
-  { iconClass: 'devicon-java-plain colored', name: 'Java', pct: 60 },
-  { iconClass: 'devicon-tailwindcss-original colored', name: 'Tailwind CSS', pct: 72 },
-  { iconClass: 'devicon-mysql-original colored', name: 'MySQL', pct: 40 },
   { iconClass: 'devicon-laravel-original colored', name: 'Laravel', pct: 67 },
-  { iconClass: 'devicon-react-original colored', name: 'React JS', pct: 73 },
-  { iconClass: 'devicon-firebase-plain colored', name: 'Firebase', pct: 80 },
+  { iconClass: 'devicon-react-original colored', name: 'React', pct: 73 },
+  { iconClass: 'devicon-mysql-original colored', name: 'Mysql', pct: 40 },
+  { iconClass: 'devicon-git-plain colored', name: 'Git', pct: 75 },
+  { iconClass: 'devicon-nodejs-plain colored', name: 'NodeJs', pct: 65 },
 ]
 
 export const softSkills = [
-  {
-    img: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Microsoft_365_%282022%29.svg',
-    name: 'Microsoft Office',
-    pct: 90,
-  },
-  {
-    img: 'assets/canva.jpg',
-    name: 'Canva Design',
-    pct: 82,
-    rounded: true,
-  },
-  {
-    img: 'assets/am.jpg',
-    name: 'Alight Motion',
-    pct: 76,
-    rounded: true,
-  },
-  {
-    img: 'https://upload.wikimedia.org/wikipedia/commons/0/0c/Capcut-icon.png',
-    name: 'CapCut Video',
-    pct: 88,
-    rounded: true,
-  },
+  { iconClass: 'devicon-vercel-plain', name: 'Vercel', pct: 78 },
+  { iconClass: 'devicon-firebase-plain colored', name: 'Firebase', pct: 80 },
+  { iconClass: 'devicon-supabase-plain colored', name: 'Supabase', pct: 70 },
+  { img: 'assets/apk/figma.png', name: 'Figma', pct: 85 },
+  { iconClass: 'devicon-github-original', name: 'Github', pct: 80 },
 ]
 
 // ------------------------- EXPERIENCE -------------------------
@@ -195,7 +175,6 @@ export const PROJECTS = {
 export const NAV_LINKS = [
   { id: 'hero', label: 'Home' },
   { id: 'about', label: 'About' },
-  { id: 'skills', label: 'Skills' },
   { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
   { id: 'contact', label: 'Contact' },
@@ -217,7 +196,7 @@ export const HERO = {
 export const CONTACT = {
   eyebrow: 'GET IN TOUCH',
   title: "LET'S COLLABORATE",
-  desc: 'Ready to craft interactive design solutions and cutting-edge web applications for your next project.',
+  
   cta: 'SEND EMAIL NOW',
   email: SITE.email,
   rights: 'All rights reserved.',

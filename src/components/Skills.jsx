@@ -64,7 +64,9 @@ export default function Skills({ t }) {
               name={s.name}
               pct={s.pct}
               icon={
-                s.badge ? (
+                s.iconClass ? (
+                  <i className={`${s.iconClass} text-[1.7rem]`} />
+                ) : s.badge ? (
                   <span
                     className={`inline-flex h-8 w-8 items-center justify-center rounded-[7px] text-[1.1rem] font-extrabold text-white ${s.badge}`}
                   >
