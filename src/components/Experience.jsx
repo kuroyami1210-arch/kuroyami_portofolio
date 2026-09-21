@@ -31,9 +31,9 @@ export default function Experience({ t }) {
             </div>
 
             {/* Card */}
-            <div className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-card p-5 transition-colors hover:border-accent/40 md:p-6">
-              {/* Number retained */}
-              <span aria-hidden="true" className="text-outline-num pointer-events-none absolute -right-1 -top-3 select-none font-display text-[4rem] font-black leading-none opacity-70">
+            <div className="exp-card group relative overflow-hidden rounded-2xl border border-white/[0.06] bg-card p-5 transition-colors hover:border-accent/40 md:p-6">
+              {/* Number — ikut oranye saat card di-hover */}
+              <span aria-hidden="true" className="text-outline-num pointer-events-none absolute -right-1 -top-3 select-none font-display text-[4rem] font-black leading-none opacity-70 transition-all duration-300 group-hover:opacity-100">
                 {String(i + 1).padStart(2, '0')}
               </span>
 

@@ -1,35 +1,7 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { scrollToSection } from '../utils/scroll'
 
-function LangSwitcher({ lang, mobile = false }) {
-  const base = mobile
-    ? 'flex w-full items-center rounded-xl border border-white/10 bg-white/[0.04] p-1'
-    : 'flex items-center rounded-full border border-white/10 bg-white/[0.04] p-1'
-  const btn = mobile
-    ? 'flex-1 rounded-lg px-4 py-2.5 text-center text-[0.8rem] font-bold tracking-[1px] transition-colors'
-    : 'rounded-full px-3 py-1 text-[0.72rem] font-bold tracking-[1px] transition-colors'
-  return (
-    <div className={base} role="group" aria-label="Language / Bahasa">
-      <Link
-        to="/"
-        aria-current={lang === 'en' ? 'true' : undefined}
-        className={`${btn} ${lang === 'en' ? 'bg-accent text-white' : 'text-muted hover:text-white'}`}
-      >
-        EN
-      </Link>
-      <Link
-        to="/id"
-        aria-current={lang === 'id' ? 'true' : undefined}
-        className={`${btn} ${lang === 'id' ? 'bg-accent text-white' : 'text-muted hover:text-white'}`}
-      >
-        ID
-      </Link>
-    </div>
-  )
-}
-
-export default function Header({ activeSection, navLinks, headerText, lang }) {
+export default function Header({ activeSection, navLinks, headerText }) {
   const [open, setOpen] = useState(false)
   const [visible, setVisible] = useState(true)
 
@@ -105,13 +77,9 @@ export default function Header({ activeSection, navLinks, headerText, lang }) {
             ))}
           </ul>
         </nav>
-        <LangSwitcher lang={lang} />
       </div>
 
       <div className="flex items-center gap-3 lg:hidden">
-        <div className="hidden sm:block">
-          <LangSwitcher lang={lang} />
-        </div>
         {/* Tombol garis 3 — hanya tampil di HP/tablet, laptop tidak terpengaruh */}
         <button
           type="button"
@@ -169,9 +137,6 @@ export default function Header({ activeSection, navLinks, headerText, lang }) {
               </a>
             </li>
           ))}
-          <li className="px-1 pb-1 pt-2 sm:hidden">
-            <LangSwitcher lang={lang} mobile />
-          </li>
         </ul>
       </nav>
 

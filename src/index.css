@@ -49,6 +49,19 @@ body {
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.22);
 }
 
+/* Angka experience ikut oranye saat card di-hover */
+.exp-card .text-outline-num {
+  transition:
+    color 0.3s ease,
+    -webkit-text-stroke-color 0.3s ease,
+    opacity 0.3s ease;
+}
+.exp-card:hover .text-outline-num {
+  color: rgba(255, 94, 0, 0.14);
+  -webkit-text-stroke-color: rgba(255, 94, 0, 0.9);
+  opacity: 1;
+}
+
 /* ---- Spotlight photo (mask + CSS var --x/--y/--radius, not in Tailwind) ---- */
 .photo-color {
   -webkit-mask-image: radial-gradient(

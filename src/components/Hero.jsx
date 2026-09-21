@@ -5,7 +5,7 @@ import { scrollToSection } from '../utils/scroll'
 const HERO_RADIUS = 150
 
 // Headline hero paling atas — SENGAJA DIKUNCI di sini, tidak diambil
-// dari portfolio.js, agar tampilannya dipertahankan di "/" maupun "/id".
+// dari portfolio.js, agar desain hero tidak berubah.
 const HERO_TITLE_LINE1 = "I'M A UI/UX"
 const HERO_TITLE_LINE2 = 'DESIGNER'
 
@@ -16,13 +16,14 @@ export default function Hero({ t }) {
   const updateSpotlight = (clientX, clientY) => {
     const colorPhoto = colorRef.current
     if (!colorPhoto) return
-    // Koordinat dihitung dari img berwarna itu sendiri (bukan wrapper),
-    // karena mask radial diterapkan pada img tersebut.
-    // Kalau pakai rect wrapper, titik tengah spotlight bergeser
-    // saat lebar wrapper != lebar foto (foto w-auto, centered).
+    // Mask radial dihitung di koordinat lokal img (sebelum scale 150%),
+    // sedangkan getBoundingClientRect() SESUDAH scale — jadi delta layar
+    // dibagi skala agar titik tengah spotlight pas di posisi mouse.
     const rect = colorPhoto.getBoundingClientRect()
-    colorPhoto.style.setProperty('--x', `${clientX - rect.left}px`)
-    colorPhoto.style.setProperty('--y', `${clientY - rect.top}px`)
+    const rawScale = rect.width / (colorPhoto.offsetWidth || rect.width)
+    const scale = rawScale && Number.isFinite(rawScale) ? rawScale : 1
+    colorPhoto.style.setProperty('--x', `${(clientX - rect.left) / scale}px`)
+    colorPhoto.style.setProperty('--y', `${(clientY - rect.top) / scale}px`)
     colorPhoto.style.setProperty('--radius', `${HERO_RADIUS}px`)
   }
 
@@ -81,13 +82,13 @@ export default function Hero({ t }) {
         <img
           src={HERO_PHOTO}
           alt={t.baseAlt}
-          className="pointer-events-none absolute bottom-0 h-[78%] w-auto max-w-full scale-140 object-contain object-bottom grayscale contrast-[1.12] brightness-[0.96] max-lg:h-full"
+          className="pointer-events-none absolute bottom-0 h-[78%] w-auto max-w-full origin-bottom scale-[150%] object-contain object-bottom grayscale contrast-[1.12] brightness-[0.96] max-lg:h-full"
         />
         <img
           ref={colorRef}
           src={HERO_PHOTO}
           alt={t.colorAlt}
-          className="photo-color pointer-events-none absolute bottom-0 h-[78%] w-auto max-w-full scale-140 object-contain object-bottom max-lg:h-full"
+          className="photo-color pointer-events-none absolute bottom-0 h-[78%] w-auto max-w-full origin-bottom scale-[150%] object-contain object-bottom max-lg:h-full"
         />
       </div>
 

@@ -123,7 +123,7 @@ function PhotoRow({ photos }) {
 }
 
 // Seluruh judul, deskripsi, badge, label, dan path gambar dibaca dari
-// portfolio.js (CONTENT.en/id.projects) — ubah/tambah proyek dari sana.
+// portfolio.js (PROJECTS) — ubah/tambah proyek dari sana.
 export default function Projects({ t }) {
   return (
     <section id="projects" className="reveal-section relative z-30 border-b border-white/5 bg-ink px-6 py-[100px]">

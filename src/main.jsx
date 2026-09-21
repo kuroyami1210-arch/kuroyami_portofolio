@@ -4,7 +4,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import App from './App.jsx'
 import './index.css'
 
-// Deteksi basename otomatis agar routing / dan /id jalan baik di:
+// Deteksi basename otomatis agar routing jalan baik di:
 // - localhost (root "/")
 // - GitHub Pages subpath ("/kuroyami_portofolio")
 // - custom domain root
@@ -18,8 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter basename={getBasename()}>
       <Routes>
-        <Route path="/" element={<App lang="en" key="en" />} />
-        <Route path="/id" element={<App lang="id" key="id" />} />
+        <Route path="/" element={<App />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

@@ -10,16 +10,16 @@ import { useActiveSection } from './hooks/useActiveSection'
 import { useReveal } from './hooks/useReveal'
 import { getContent } from './data/portfolio'
 
-export default function App({ lang = 'en' }) {
-  const t = getContent(lang)
+export default function App() {
+  const t = getContent()
   const activeSection = useActiveSection(t.nav.map((l) => l.id))
-  useReveal(lang)
+  useReveal()
 
   useEffect(() => {
     document.documentElement.lang = t.meta.htmlLang
     document.title = t.meta.title
     window.scrollTo(0, 0)
-  }, [lang, t.meta.htmlLang, t.meta.title])
+  }, [t.meta.htmlLang, t.meta.title])
 
   return (
     <div className="relative min-h-screen bg-ink text-white">
@@ -28,7 +28,6 @@ export default function App({ lang = 'en' }) {
         activeSection={activeSection}
         navLinks={t.nav}
         headerText={t.header}
-        lang={lang}
       />
       <main className="relative">
         <Hero t={t.hero} />
@@ -36,7 +35,7 @@ export default function App({ lang = 'en' }) {
         <Skills t={t.skills} />
         <Experience t={t.experience} />
         <Projects t={t.projects} />
-        <Contact t={t.contact} />
+        <Contact t={t.contact} navLinks={t.nav} />
       </main>
     </div>
   )
