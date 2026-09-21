@@ -3,7 +3,6 @@ import Header from './components/Header.jsx'
 import Hero from './components/Hero.jsx'
 import About from './components/About.jsx'
 import Skills from './components/Skills.jsx'
-import Experience from './components/Experience.jsx'
 import Projects from './components/Projects.jsx'
 import Contact from './components/Contact.jsx'
 import { useActiveSection } from './hooks/useActiveSection'
@@ -31,9 +30,8 @@ export default function App() {
       />
       <main className="relative">
         <Hero t={t.hero} />
-        <About t={t.about} />
+        <About t={t.about} exp={t.experience} />
         <Skills t={t.skills} />
-        <Experience t={t.experience} />
         <Projects t={t.projects} />
         <Contact t={t.contact} navLinks={t.nav} />
       </main>
