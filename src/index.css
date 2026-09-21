@@ -17,11 +17,19 @@ html,
 body {
   overflow-x: hidden;
   overflow-x: clip;
+  /* Sembunyikan scrollbar tapi scroll tetap jalan */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
 }
 
 /* ---- HP: kecilkan jarak geser animasi reveal agar tidak menyembul keluar layar ---- */
-@media (max-width: 1023.5px) {
-  .reveal-left {
+@media (max-width: 1023.5px) {  .reveal-left {
     translate: -24px 0;
   }
 
