@@ -4,9 +4,8 @@ import { scrollToSection } from '../utils/scroll'
 
 const ABOUT_RADIUS = 145
 
-export default function About({ t, exp }) {
+export default function About({ t }) {
   const colorRef = useRef(null)
-  const experiences = exp?.items || []
 
   // Sama seperti foto hero: grayscale + spotlight warna mengikuti pointer.
   // Foto about di-scale (scale-[150%]), sedangkan mask radial dihitung
@@ -120,62 +119,6 @@ export default function About({ t, exp }) {
           </svg>
         </div>
       </div>
-
-      {/* Experience — bagian dari About, tidak lagi punya nav sendiri */}
-      {experiences.length > 0 && (
-        <div className="mx-auto mt-20 max-w-[880px] max-lg:mt-14">
-          <div className="reveal-child mb-10 text-center" data-delay="50">
-            <span className="text-[0.8rem] font-bold tracking-[2px] text-accent">
-              {exp.eyebrow}
-            </span>
-            <h3 className="mt-2 font-display text-[clamp(2rem,4vw,2.8rem)] font-extrabold tracking-tight text-white max-lg:text-[clamp(1.4rem,6.5vw,1.9rem)]">
-              {exp.titleA} <span className="text-accent">{exp.amp}</span> {exp.titleB}
-            </h3>
-            <div className="mx-auto mt-4 h-[3px] w-16 rounded-full bg-accent" />
-          </div>
-
-          <div className="flex flex-col">
-            {experiences.map((item, i) => (
-              <article
-                key={`${item.role}-${i}`}
-                data-delay={Math.min(i * 110, 440)}
-                className="reveal-child relative grid grid-cols-[28px_1fr] gap-4 pb-5 last:pb-0 md:gap-5"
-              >
-                {/* Timeline rail */}
-                <div className="flex flex-col items-center" aria-hidden="true">
-                  <span className="mt-1.5 h-3 w-3 shrink-0 rounded-full bg-accent shadow-[0_0_12px_rgba(255,94,0,0.7)]" />
-                  {i < experiences.length - 1 && (
-                    <span className="mt-2 w-[2px] flex-1 rounded bg-white/10" />
-                  )}
-                </div>
-
-                {/* Card */}
-                <div className="exp-card group relative overflow-hidden rounded-2xl border border-white/[0.06] bg-card p-5 transition-colors hover:border-accent/40 md:p-6">
-                  <span aria-hidden="true" className="text-outline-num pointer-events-none absolute -right-1 -top-3 select-none font-display text-[4rem] font-black leading-none opacity-70 transition-all duration-300 group-hover:opacity-100">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-
-                  <div className="relative flex flex-wrap items-center gap-2.5">
-                    <span className="text-[0.74rem] font-bold uppercase tracking-[1px] text-[#8c8c8c]">
-                      {item.year}
-                    </span>
-                  </div>
-
-                  <h4 className="relative mt-3 font-display text-[1.25rem] font-extrabold leading-snug tracking-tight text-white">
-                    {item.role}
-                  </h4>
-                  <span className="relative mt-1 block text-[0.74rem] font-bold uppercase tracking-[1.6px] text-accentLight/80">
-                    {item.org}
-                  </span>
-                  <p className="relative mt-2.5 text-[0.88rem] leading-[1.7] text-[#a3a3a3]">
-                    {item.desc}
-                  </p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      )}
     </section>
   )
 }

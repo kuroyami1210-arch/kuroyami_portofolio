@@ -35,22 +35,22 @@ export const SKILLS = {
 }
 
 export const devSkills = [
-  { iconClass: 'devicon-html5-plain colored', name: 'HTML', pct: 82 },
-  { iconClass: 'devicon-css3-plain colored', name: 'CSS', pct: 78 },
+  { iconClass: 'devicon-html5-plain colored', name: 'HTML5', pct: 82 },
+  { iconClass: 'devicon-css3-plain colored', name: 'CSS3', pct: 78 },
   { iconClass: 'devicon-javascript-plain colored', name: 'JavaScript', pct: 56 },
   { iconClass: 'devicon-laravel-original colored', name: 'Laravel', pct: 67 },
   { iconClass: 'devicon-react-original colored', name: 'React', pct: 73 },
   { iconClass: 'devicon-mysql-original colored', name: 'Mysql', pct: 40 },
-  { iconClass: 'devicon-git-plain colored', name: 'Git', pct: 75 },
-  { iconClass: 'devicon-nodejs-plain colored', name: 'NodeJs', pct: 65 },
+  { iconClass: 'devicon-git-plain colored', name: 'Git', pct: 92 },
 ]
 
 export const softSkills = [
-  { iconClass: 'devicon-vercel-plain', name: 'Vercel', pct: 78 },
-  { iconClass: 'devicon-firebase-plain colored', name: 'Firebase', pct: 80 },
+  { iconClass: 'devicon-nodejs-plain colored', name: 'NodeJs', pct: 91 },
+  { iconClass: 'devicon-vercel-plain', name: 'Vercel', pct: 100 },
+  { iconClass: 'devicon-firebase-plain colored', name: 'Firebase', pct: 83 },
   { iconClass: 'devicon-supabase-plain colored', name: 'Supabase', pct: 70 },
   { img: 'assets/apk/figma.png', name: 'Figma', pct: 85 },
-  { iconClass: 'devicon-github-original', name: 'Github', pct: 80 },
+  { iconClass: 'devicon-github-original', name: 'Github', pct: 84 },
 ]
 
 // ------------------------- EXPERIENCE -------------------------
