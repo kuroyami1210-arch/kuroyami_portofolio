@@ -62,52 +62,54 @@ export const EXPERIENCE = {
   items: [
     {
       role: 'Vice Head of Division 1',
-      org: 'OSIS Student Council',
+      org: 'OSIS',
       year: '2025 — 2026',
       kind: 'Leadership',
       badge: 'badge-orange',
-      desc: 'Led the school creative and multimedia division, overseeing all visual publications, coordinating the team workflow, and driving creative programs and media production.',
+      desc: 'Led the planning and execution of major school religious events while mentoring junior division members in project management and leadership. Directed committee workflows, provided strategic pre-event feedback, managed social fundraising drives, and supported cross-divisional projects like Classmeet and Spectra Fest.',
     },
     {
+    role: 'Member of Cocuricular Team',
+      org: 'SMKN 1 Dukuhturi',
+      year: '2025 — 2026',
+      kind: 'Literacy',
+      badge: 'badge-yellow',
+      desc: 'Recorded audio readings of literacy texts for the schools weekly Tuesday literacy initiative, produced promotional video content for social media to support the school library accreditation process, and partnered with the Smezine team to mentor prospective members..',
+    },
+    {
+      
       role: 'Head of Journalism Division',
-      org: 'Mading Extracurricular',
+      org: 'Smezine Extracurricular',
       year: '2025 - 2026',
       kind: 'Leadership',
       badge: 'badge-red',
-      desc: 'Directed the UI/UX design of the school digital wall-magazine portal, curated interactive article rubrics, and implemented an adaptive e-magazine reading system for all students.',
+      desc: 'Served as deputy to the General Chairman, co-designing the division annual work program and overseeing routine journalism meetings, training, and event coverage. Partnered with senior leadership at the Radar Tegal editorial office to execute specialized journalistic workshops for division members.',
     },
     {
-      role: '1st Place Winner, Literacy Video Competition of Tegal Regency',
+      role: '1st Place, Literacy Video Competition of Tegal Regency',
       org: 'Tegal Regency Library',
       year: '2026',
       kind: 'Achievement',
       badge: 'badge-blue',
-      desc: 'Produced, directed, and edited a literacy-themed short video — covering story concept, visual narrative, filming, and video editing with CapCut and Alight Motion.',
+      desc: 'Co-wrote scripts, conceptualized storylines, and starred as an actor in educational video content focused on literacy awareness. Handled production prep and shoot logistics, leading the team to secure 1st place in the regency-level competition.',
     },
     {
-      role: '1st Place Winner, FLS3N Journalism Branch',
-      org: 'FLS3N',
+      role: '1st Place, FLS3N Journalism Branch',
+      org: 'FLS3N Tegal Regancy',
       year: '2026',
       kind: 'Achievement',
       badge: 'badge-purple',
-      desc: 'Won the FLS3N journalism competition for journalistic work covering news writing, field reporting, article structure, and editorial layout with strong visual hierarchy.',
+      desc: 'Secured 1st place by conducting field research on Tegal cultural figures and featuring renowned artist Bontot Sukandar through primary interviews. Structured and authored a polished journalistic article based on interview insights and background research.',
     },
     {
-      role: 'Pilketos (E-Voting) App Developer',
-      org: 'SMKN 1 Dukuhturi',
+      role: 'Participant, FLS3N Journalism Branch',
+      org: 'FLS3N Central Java',
       year: '2026',
       kind: 'Platform',
       badge: 'badge-orange',
-      desc: 'Designed and built a transparent and efficient e-voting system architecture with single-use unique tokens, live quick-count calculation on the hall screen, and fraud-free vote audit encryption.',
+      desc: 'Represented Tegal Regency at the provincial level by researching Surakarta art preservationists and conducting an on-location interview in Kampung Batik Laweyan with community pioneer Alpha Febela Priyatno. Processed field findings into a structured feature article on cultural revitalization.',
     },
-    {
-      role: 'School Ambassador Registration App Developer',
-      org: 'SMKN 1 Dukuhturi',
-      year: '2026',
-      kind: 'Platform',
-      badge: 'badge-red',
-      desc: 'Built a responsive online registration platform for mobile and desktop, with integrated participant portfolio management and a spectator quick-count module for the selection process.',
-    },
+
   ],
 }
 
@@ -167,10 +169,7 @@ export const PROJECTS = {
   },
 }
 
-// ============================================================
-//  Bagian statis di bawah ini (nav, hero, contact, header)
-//  tidak perlu sering diubah — dibiarkan agar komponen tetap jalan.
-// ============================================================
+
 
 export const NAV_LINKS = [
   { id: 'hero', label: 'Home' },
