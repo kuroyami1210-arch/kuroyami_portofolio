@@ -48,10 +48,10 @@ export default function Hero({ t }) {
   return (
     <section
       id="hero"
-      className="reveal-section relative z-40 flex h-[calc(100vh_-_63px)] min-h-[640px] items-end justify-center overflow-visible border-b border-white/[0.08] max-lg:h-auto max-lg:min-h-0 max-lg:flex-col max-lg:items-center max-lg:justify-center max-lg:pb-0 max-lg:pt-0"
+      className="reveal-section relative z-40 flex h-[calc(100vh_-_63px)] min-h-[640px] items-end justify-center overflow-visible border-b border-white/[0.08] max-lg:h-auto max-lg:min-h-[580px] max-lg:flex-col max-lg:items-center max-lg:justify-center max-lg:pb-10 max-lg:pt-0"
     >
       {/* Back title */}
-      <div data-delay="50" className="reveal-fade pointer-events-none absolute left-1/2 top-[calc(60%_+_70px)] z-[2] w-full -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap text-center font-display text-[clamp(3.2rem,7.8vw,7.8rem)] font-black uppercase leading-[0.95] tracking-tight text-white max-lg:top-[calc(60%_+_110px)] max-lg:text-[clamp(2.24rem,5.46vw,5.46rem)]">
+      <div data-delay="50" className="reveal-fade pointer-events-none absolute left-1/2 top-[calc(60%_+_70px)] z-[2] w-full -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap text-center font-display text-[clamp(3.2rem,7.8vw,7.8rem)] font-black uppercase leading-[0.95] tracking-tight text-white max-lg:top-[calc(60%_+_90px)] max-lg:text-[clamp(2.24rem,5.46vw,5.46rem)]">
         {HERO_TITLE_LINE1}
         <br />
         {HERO_TITLE_LINE2}
@@ -77,7 +77,7 @@ export default function Hero({ t }) {
         onTouchMove={handleTouchMove}
         onMouseLeave={handleMouseLeave}
         data-delay="150"
-        className="reveal-fade absolute bottom-0 left-1/2 z-[5] flex h-[96%] max-h-[980px] w-[min(880px,98vw)] -translate-x-1/2 cursor-crosshair items-end justify-center max-lg:static max-lg:bottom-auto max-lg:left-auto max-lg:order-2 max-lg:-mt-24 max-lg:h-[calc(122.4svh_-_360px)] max-lg:max-h-[756px] max-lg:w-[92vw] max-lg:translate-x-0max-lg:static max-lg:bottom-auto max-lg:left-auto max-lg:order-2 max-lg:-mt-40 max-lg:h-[calc(110svh_-_360px)] max-lg:max-h-[680px] max-lg:w-[92vw] max-lg:translate-x-0"
+        className="reveal-fade absolute bottom-0 left-1/2 z-[5] flex h-[96%] max-h-[980px] w-[min(880px,98vw)] -translate-x-1/2 cursor-crosshair items-end justify-center max-lg:static max-lg:bottom-auto max-lg:left-auto max-lg:order-2 max-lg:-mt-32 max-lg:h-[58vh] max-lg:max-h-[620px] max-lg:min-h-[420px] max-lg:w-[92vw] max-lg:translate-x-0"
       >
         <img
           src={HERO_PHOTO}
@@ -93,7 +93,7 @@ export default function Hero({ t }) {
       </div>
 
       {/* Front outline title */}
-      <div data-delay="250" className="reveal-fade text-outline pointer-events-none absolute left-1/2 top-[calc(60%_+_70px)] z-[6] w-full -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap text-center font-display text-[clamp(3.2rem,7.8vw,7.8rem)] font-black uppercase leading-[0.95] tracking-tight max-lg:top-[calc(60%_+_110px)] max-lg:text-[clamp(2.24rem,5.46vw,5.46rem)]">
+      <div data-delay="250" className="reveal-fade text-outline pointer-events-none absolute left-1/2 top-[calc(60%_+_70px)] z-[6] w-full -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap text-center font-display text-[clamp(3.2rem,7.8vw,7.8rem)] font-black uppercase leading-[0.95] tracking-tight max-lg:top-[calc(60%_+_90px)] max-lg:text-[clamp(2.24rem,5.46vw,5.46rem)]">
         {HERO_TITLE_LINE1}
         <br />
         {HERO_TITLE_LINE2}
